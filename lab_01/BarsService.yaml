@@ -1,0 +1,78 @@
+openapi: 3.0.3
+info:
+  title: Bars API
+  description: API для управления сложностью лабораторных работ
+  version: 1.0.0
+servers:
+  - url: https://localhost:8080
+paths:
+  /bars/labwork/{labwork-id}/difficulty/increase/{steps-count}:
+    post:
+      summary: Повысить сложность заданной лабораторной работы
+      parameters:
+        - name: labwork-id
+          in: path
+          required: true
+          description: ID лабораторной работы
+          schema:
+            type: integer
+            format: int32
+            nullable: false
+            minimum: 1
+            example: 10
+        - name: steps-count
+          in: path
+          required: true
+          description: Количество шагов для повышения сложности
+          schema:
+            type: integer
+            format: int32
+            nullable: false
+            minimum: 1
+            example: 2
+      responses:
+        '200':
+          description: Сложность успешно повышена
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LabWork'      
+        '400':
+          description: Некорректный ID лабораторной работы или значение для количества шагов
+        '404':
+          description: Лабораторная работа не найдена
+  /bars/labwork/{labwork-id}/difficulty/decrease/{steps-count}:
+    post:
+      summary: Понизить сложность заданной лабораторной работы
+      parameters:
+        - name: labwork-id
+          in: path
+          required: true
+          description: ID лабораторной работы
+          schema:
+            type: integer
+            format: int32
+            nullable: false
+            minimum: 1
+            example: 10
+        - name: steps-count
+          in: path
+          required: true
+          description: Количество шагов для понижения сложности
+          schema:
+            type: integer
+            format: int32
+            nullable: false
+            minimum: 1
+            example: 2
+      responses:
+        '200':
+          description: Сложность успешно понижена
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LabWork'      
+        '400':
+          description: Некорректный ID лабораторной работы или значение для количества шагов
+        '404':
+          description: Лабораторная работа не найдена
