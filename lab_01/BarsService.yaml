@@ -32,11 +32,7 @@ paths:
             example: 2
       responses:
         '200':
-          description: Сложность успешно повышена
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/LabWork'      
+          description: Сложность успешно повышена     
         '400':
           description: Некорректный ID лабораторной работы или значение для количества шагов
         '404':
@@ -67,11 +63,7 @@ paths:
             example: 2
       responses:
         '200':
-          description: Сложность успешно понижена
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/LabWork'      
+          description: Сложность успешно понижена     
         '400':
           description: Некорректный ID лабораторной работы или значение для количества шагов
         '404':
