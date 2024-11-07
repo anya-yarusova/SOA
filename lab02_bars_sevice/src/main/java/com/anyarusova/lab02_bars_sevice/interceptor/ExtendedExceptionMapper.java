@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ExtendedExceptionMapper implements ExceptionMapper<ExtendedException> {
     @Override
     public Response toResponse(ExtendedException e) {
-        log.warn("Вызвано исключение {}:\n\tstatus={}\n\tmessage={}", e.getExtendedClass(), e.getStatus(), e.getMessage());
+        log.error("Exception occurred: {}", e.getMessage());
 
         return Response
                 .status(e.getStatus())

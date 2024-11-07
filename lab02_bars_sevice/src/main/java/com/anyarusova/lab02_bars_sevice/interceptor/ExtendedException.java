@@ -14,10 +14,4 @@ public class ExtendedException extends Exception {
         this.status = status;
         this.extendedClass = ExtendedException.class.getName();
     }
-
-    public ExtendedException(Response.Status status, String message, String extendedClass) {
-        super(message);
-        this.status = status;
-        this.extendedClass = extendedClass;
-    }
 }

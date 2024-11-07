@@ -1,6 +1,7 @@
 package com.anyarusova.lab02_bars_sevice.controller;
 
 import com.anyarusova.lab02_bars_sevice.dto.LabWorkData;
+import com.anyarusova.lab02_bars_sevice.interceptor.ExtendedException;
 import com.anyarusova.lab02_bars_sevice.service.BarsService;
 
 import jakarta.inject.Inject;
@@ -17,13 +18,15 @@ public class BarsController {
 
     @POST
     @Path("/labwork/{labwork-id}/difficulty/increase/{steps-count}")
-    public Response increaseDifficulty(@PathParam("labwork-id") long id, @PathParam("steps-count") int stepsCount){
-        LabWorkData labwork = barsService.increaseDifficulty(id, stepsCount);
+    public Response increaseDifficulty(@PathParam("labwork-id") long id, @PathParam("steps-count") int stepsCount) throws ExtendedException {
+        LabWorkData labWork = barsService.increaseDifficulty(id, stepsCount);
+        return Response.ok(labWork).build();
     }
 
     @POST
     @Path("/labwork/{labwork-id}/difficulty/decrease/{steps-count}")
-    public Response decreaseDifficulty(@PathParam("labwork-id") long id, @PathParam("steps-count") int stepsCount){
-        LabWorkData labwork = barsService.decreaseDifficulty(id, stepsCount);
+    public Response decreaseDifficulty(@PathParam("labwork-id") long id, @PathParam("steps-count") int stepsCount) throws ExtendedException {
+        LabWorkData labWork = barsService.decreaseDifficulty(id, stepsCount);
+        return Response.ok(labWork).build();
     }
 }
