@@ -5,14 +5,13 @@ import com.anyarusova.lab02_bars_sevice.dto.LabWorkData;
 import com.anyarusova.lab02_bars_sevice.interceptor.ExtendedException;
 import com.anyarusova.lab02_bars_sevice.service.model.LabWork;
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
 import org.dozer.DozerBeanMapper;
+
 
 @ApplicationScoped
 public class BarsServiceImpl implements BarsService {
 
-    @Inject
-    private LabWorkClient labWorkClient;
+    private static final LabWorkClient labWorkClient = new LabWorkClient();
     private final DozerBeanMapper mapper = new DozerBeanMapper();
 
     @Override

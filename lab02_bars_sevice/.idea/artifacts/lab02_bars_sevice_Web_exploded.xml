@@ -1,0 +1,31 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="lab02_bars_sevice:Web exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/lab02_bars_sevice_Web_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="lab02_bars_sevice/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="lab02_bars_sevice" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.18.26" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.15.0" />
+          <element id="library" level="project" name="Maven: javax:javaee-web-api:8.0.1" />
+          <element id="library" level="project" name="Maven: net.sf.dozer:dozer:5.5.1" />
+          <element id="library" level="project" name="Maven: commons-beanutils:commons-beanutils:1.9.1" />
+          <element id="library" level="project" name="Maven: commons-collections:commons-collections:3.2.1" />
+          <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.2.1" />
+          <element id="library" level="project" name="Maven: org.slf4j:jcl-over-slf4j:1.7.5" />
+          <element id="library" level="project" name="Maven: javax.mvc:javax.mvc-api:1.0.0" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-web:6.0.4" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-beans:6.0.4" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-core:6.0.4" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jcl:6.0.4" />
+          <element id="library" level="project" name="Maven: io.micrometer:micrometer-observation:1.10.3" />
+          <element id="library" level="project" name="Maven: io.micrometer:micrometer-commons:1.10.3" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:2.0.6" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

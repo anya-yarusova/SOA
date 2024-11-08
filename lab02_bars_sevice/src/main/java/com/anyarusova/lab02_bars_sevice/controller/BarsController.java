@@ -3,18 +3,19 @@ package com.anyarusova.lab02_bars_sevice.controller;
 import com.anyarusova.lab02_bars_sevice.dto.LabWorkData;
 import com.anyarusova.lab02_bars_sevice.interceptor.ExtendedException;
 import com.anyarusova.lab02_bars_sevice.service.BarsService;
-
-import jakarta.inject.Inject;
-import jakarta.ws.rs.*;
+import com.anyarusova.lab02_bars_sevice.service.BarsServiceImpl;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 @Path("/bars")
 @Consumes(MediaType.APPLICATION_JSON)
 public class BarsController {
-
-    @Inject
-    BarsService barsService;
+    
+    BarsService barsService = new BarsServiceImpl();
 
     @POST
     @Path("/labwork/{labwork-id}/difficulty/increase/{steps-count}")
