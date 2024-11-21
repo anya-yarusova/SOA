@@ -7,11 +7,9 @@ import lombok.Getter;
 public class ExtendedException extends Exception {
 
     private final Response.Status status;
-    private final String extendedClass;
 
     public ExtendedException(Response.Status status, String message) {
         super(message);
         this.status = status;
-        this.extendedClass = ExtendedException.class.getName();
     }
 }

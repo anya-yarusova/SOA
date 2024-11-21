@@ -9,9 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 @Path("/hello-world")
 @Slf4j
 public class HelloResource {
-    public HelloResource() {
-        log.error("sfjbdvfnd fasvm casf dvhjwerasdvf whjefasd");
-    }
 
     @GET
     @Produces("text/plain")

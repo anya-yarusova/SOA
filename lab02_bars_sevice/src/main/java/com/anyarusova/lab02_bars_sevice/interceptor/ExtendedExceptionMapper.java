@@ -13,7 +13,7 @@ public class ExtendedExceptionMapper implements ExceptionMapper<ExtendedExceptio
 
         return Response
                 .status(e.getStatus())
-                .entity(new Error(e.getMessage()))
+                .entity(new Error(e.getMessage(), e.getStatus().getStatusCode()))
                 .type(MediaType.APPLICATION_JSON_TYPE)
                 .build();
     }

@@ -8,18 +8,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.*;
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
+import java.util.Date;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class LabWorkData {
-    @JsonProperty("id")
-    @Min(1)
-    @NotNull()
-    private long id;
 
     @JsonProperty("name")
     @NotBlank()
@@ -30,14 +25,9 @@ public class LabWorkData {
     @NotNull
     private Coordinates coordinates;
 
-    @JsonProperty("creationDate")
-    @NotNull
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-    private LocalDateTime creationDate;
-
     @JsonProperty("minimalPoint")
     @Min(1)
-    private int minimalPoint;
+    private float minimalPoint;
 
     @JsonProperty("difficulty")
     private Difficulty difficulty;
@@ -66,8 +56,8 @@ public class LabWorkData {
 
         @JsonProperty("birthday")
         @NotNull
-        @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssZ")
-        private ZonedDateTime birthday;
+        @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+        private Date birthday;
 
         @JsonProperty("weight")
         @NotNull
