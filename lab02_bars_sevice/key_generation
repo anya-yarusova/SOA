@@ -1,0 +1,8 @@
+keytool -genkeypair -alias spring -keyalg RSA -keysize 2048 -validity 365 -keystore spring.keystore -dname "cn=spring" -ext SAN=dns:localhost -keypass password -storepass password
+keytool -genkeypair -alias s1as -keyalg RSA -keysize 2048 -validity 365 -keystore payara.keystore -dname "cn=payara" -ext SAN=dns:localhost -keypass password -storepass password
+
+keytool -exportcert -keystore spring.keystore -alias spring -keypass password -storepass password -file spring.crt
+keytool -exportcert -keystore payara.keystore -alias s1as -keypass password -storepass password -file payara.crt
+
+keytool -importcert -keystore spring.truststore -storepass password -alias spring -trustcacerts -file payara.crt -noprompt
+keytool -importcert -keystore payara.truststore -storepass password -alias s1as -trustcacerts -file spring.crt -noprompt

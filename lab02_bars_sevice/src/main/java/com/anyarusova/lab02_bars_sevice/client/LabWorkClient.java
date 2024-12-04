@@ -2,26 +2,36 @@ package com.anyarusova.lab02_bars_sevice.client;
 
 import com.anyarusova.lab02_bars_sevice.dto.LabWorkData;
 import com.anyarusova.lab02_bars_sevice.interceptor.ExtendedException;
-import jakarta.ws.rs.client.Client;
-import jakarta.ws.rs.client.ClientBuilder;
-import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
 public class LabWorkClient {
+
+    String serviceUrl = "https://localhost:5378/v1";
+    private final ObjectMapper objectMapper = new ObjectMapper();;
+
     public LabWorkData getLabWorkById(long id) throws ExtendedException {
-        String serviceUrl = "http://localhost:5678/v1";     //TODO: add this url to config
         String url = serviceUrl + "/labworks/" + id;
         try {
-            Client client = ClientBuilder.newClient();
+            HttpClient client = HttpClient.newBuilder().build();
 
-            Response response = client.target(url).request(MediaType.APPLICATION_JSON_TYPE).get();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(url))
+                    .header("Accept", MediaType.APPLICATION_JSON)
+                    .GET()
+                    .build();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
             handleResponse(response);
 
-            LabWorkData labWorkData = response.readEntity(LabWorkData.class);
-
-            client.close();
+            LabWorkData labWorkData = objectMapper.readValue(response.body(), LabWorkData.class);
 
             if (labWorkData == null) {
                 throw new ExtendedException(Response.Status.NOT_FOUND, "Лабораторная работа не найдена");
@@ -35,24 +45,28 @@ public class LabWorkClient {
     }
 
     public void updateLabWork(long id, LabWorkData labWorkData) throws ExtendedException {
-        String serviceUrl = "http://localhost:5678/v1";     //TODO: add this url to config
         String url = serviceUrl + "/labworks/" + id;
 
         try {
-            Client client = ClientBuilder.newClient();
+            HttpClient client = HttpClient.newBuilder().build();
 
-            Response response = client.target(url).request(MediaType.APPLICATION_JSON_TYPE).put(Entity.json(labWorkData));
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(url))
+                    .header("Content-Type", MediaType.APPLICATION_JSON)
+                    .PUT(HttpRequest.BodyPublishers.ofString(objectMapper.writeValueAsString(labWorkData)))
+                    .build();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
             handleResponse(response);
 
-            client.close();
         } catch (Exception e) {
             throw new ExtendedException(Response.Status.INTERNAL_SERVER_ERROR, e.getMessage());
         }
     }
 
-    private static void handleResponse(Response response) throws ExtendedException {
-        if (response.getStatus() != Response.Status.OK.getStatusCode()) {
+    private static void handleResponse(HttpResponse<?> response) throws ExtendedException {
+        if (response.statusCode() != Response.Status.OK.getStatusCode()) {
             throw new ExtendedException(Response.Status.BAD_REQUEST, "Лабораторная работа не найдена");
         }
     }

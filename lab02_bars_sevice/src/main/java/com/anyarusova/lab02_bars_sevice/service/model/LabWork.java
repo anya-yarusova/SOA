@@ -1,5 +1,6 @@
 package com.anyarusova.lab02_bars_sevice.service.model;
 
+import com.anyarusova.lab02_bars_sevice.interceptor.ExtendedException;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,13 +21,11 @@ public class LabWork {
     private Difficulty difficulty; //Поле может быть null
     private Person author; //Поле не может быть null
 
-    public void increaseDifficulty(int stepsCount)
-    {
+    public void increaseDifficulty(int stepsCount) throws ExtendedException {
         this.difficulty = this.difficulty.increaseDifficulty(stepsCount);
     }
 
-    public void decreaseDifficulty(int stepsCount)
-    {
+    public void decreaseDifficulty(int stepsCount) throws ExtendedException {
         this.difficulty = this.difficulty.decreaseDifficulty(stepsCount);
     }
 }

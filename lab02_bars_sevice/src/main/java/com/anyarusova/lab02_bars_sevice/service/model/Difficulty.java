@@ -1,5 +1,8 @@
 package com.anyarusova.lab02_bars_sevice.service.model;
 
+import com.anyarusova.lab02_bars_sevice.interceptor.ExtendedException;
+
+import jakarta.ws.rs.core.Response;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -12,19 +15,19 @@ public enum Difficulty {
 
     static final Difficulty[] VALUES = values();
 
-    public Difficulty increaseDifficulty(int stepsCount) {
+    public Difficulty increaseDifficulty(int stepsCount) throws ExtendedException {
         try {
             return VALUES[ordinal() + stepsCount];
         } catch (Exception e) {
-            throw new UnsupportedOperationException("Нельзя повысить сложность");
+            throw new ExtendedException(Response.Status.BAD_REQUEST, "Нельзя повысить сложность");
         }
     }
 
-    public Difficulty decreaseDifficulty(int stepsCount) {
+    public Difficulty decreaseDifficulty(int stepsCount) throws ExtendedException {
         try {
             return VALUES[ordinal() - stepsCount];
         } catch (Exception e) {
-            throw new UnsupportedOperationException("Нельзя понизить сложность");
+            throw new ExtendedException(Response.Status.BAD_REQUEST, "Нельзя понизить сложность");
         }
     }
 }
