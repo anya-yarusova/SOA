@@ -13,6 +13,7 @@ public class HelloApplication extends Application {
     private final Set<Class<?>> classes = new HashSet<>();
 
     public HelloApplication() {
+        classes.add(CORSFilter.class);
         classes.add(HelloResource.class);
         classes.add(BarsController.class);
         classes.add(ExtendedExceptionMapper.class);
