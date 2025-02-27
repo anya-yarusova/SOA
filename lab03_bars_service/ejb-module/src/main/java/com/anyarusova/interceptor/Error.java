@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -14,9 +12,4 @@ import java.time.LocalDateTime;
 public class Error {
     private String message;
     private int statusCode;
-    private LocalDateTime timestamp;
-
-    public Error(String message, int statusCode) {
-        this(message, statusCode, LocalDateTime.now());
-    }
 }

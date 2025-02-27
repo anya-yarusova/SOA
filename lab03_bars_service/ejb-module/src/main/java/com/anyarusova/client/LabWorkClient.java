@@ -13,7 +13,7 @@ import java.net.http.HttpResponse;
 
 public class LabWorkClient {
 
-    String serviceUrl = "https://localhost:5378/v1";
+    String serviceUrl = "https://localhost:10002/api/v1";
     private final ObjectMapper objectMapper = new ObjectMapper();;
 
     public LabWorkData getLabWorkById(long id) throws ExtendedException {

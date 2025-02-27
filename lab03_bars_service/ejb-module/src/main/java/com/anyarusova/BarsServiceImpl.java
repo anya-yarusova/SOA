@@ -1,23 +1,24 @@
-package com.anyarusova.service;
+package com.anyarusova;
 
 import com.anyarusova.client.LabWorkClient;
 import com.anyarusova.dto.LabWorkData;
 import com.anyarusova.interceptor.ExtendedException;
 import com.anyarusova.service.model.LabWork;
 
-import org.dozer.DozerBeanMapper;
-
-import javax.ejb.Stateless;
+import jakarta.ejb.Remote;
+import jakarta.ejb.Stateless;
+import org.modelmapper.ModelMapper;
 
 
 @Stateless
 public class BarsServiceImpl implements BarsService {
 
     private static final LabWorkClient labWorkClient = new LabWorkClient();
-    private final DozerBeanMapper mapper = new DozerBeanMapper();
+    private final ModelMapper mapper = new ModelMapper();
 
     @Override
     public LabWorkData increaseDifficulty(long id, int stepsCount) throws ExtendedException {
+
         LabWorkData labWorkData = labWorkClient.getLabWorkById(id);
         LabWork labWork = mapper.map(labWorkData, LabWork.class);
 

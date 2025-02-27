@@ -2,7 +2,6 @@ package com.anyarusova;
 
 import com.anyarusova.dto.LabWorkData;
 import com.anyarusova.interceptor.ExtendedException;
-import com.anyarusova.service.BarsService;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -10,13 +9,13 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-import javax.ejb.EJB;
+import jakarta.ejb.EJB;
 
 @Path("/bars")
 @Consumes(MediaType.APPLICATION_JSON)
 public class BarsController {
 
-    @EJB(lookup = "java:global/ejb-module/BarsServiceImpl!com.anyarusova.BarsService")
+    @EJB(lookup = "java:global/web-module-1.0-SNAPSHOT/BarsServiceImpl!com.anyarusova.BarsService")
     private BarsService barsService;
 
     @POST

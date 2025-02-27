@@ -1,9 +1,9 @@
-package com.anyarusova.service;
+package com.anyarusova;
 
 import com.anyarusova.dto.LabWorkData;
 import com.anyarusova.interceptor.ExtendedException;
 
-import javax.ejb.Remote;
+import jakarta.ejb.Remote;
 
 @Remote
 public interface BarsService {
